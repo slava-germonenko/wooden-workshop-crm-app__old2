@@ -1,0 +1,18 @@
+<nb-layout>
+  <nb-layout-header *ngIf="toolbarVisible$ | async" fixed>
+    <span class="flex-spacer"></span>
+    <nb-user
+      *ngIf="user$ | async as user"
+      [name]="user | fullName"
+      [nbContextMenu]="(profileMenuItems$ | async) || []"
+    ></nb-user>
+  </nb-layout-header>
+
+  <nb-sidebar *ngIf="sidebarVisible$ | async">
+    <nb-menu #menu [items]="sidebarItems" tag="sidebar"></nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>
